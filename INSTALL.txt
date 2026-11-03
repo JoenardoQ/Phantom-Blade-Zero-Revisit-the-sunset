@@ -1,0 +1,50 @@
+梦中身 / Dreambody — v1.0.0 · 4K 修正版 / 4K release
+适配 Windows Steam 版《影之刃零》，游戏构建号 26266538。
+For Phantom Blade Zero, Windows Steam build 26266538.
+
+安装 / Installation
+退出游戏，将 ~mods 文件夹解压到游戏目录 ProjectPBZ\Content\Paks，覆盖原有同名的三个 DreamBody_P 文件。没有 EXE 安装器，不需要额外模组加载器。
+Close the game. Extract ~mods into ProjectPBZ\Content\Paks, replacing the three existing DreamBody_P files. No EXE installer or additional mod loader is required.
+
+使用 / How to use
+背包「道具」的「全部」或「剧情道具」第一格为梦中身，按游戏显示的使用键即可。道具跨存档显示，可反复使用。
+Dreambody appears in the first slot under Items → All or Story Items. Press the displayed use key. The item appears across saves and is reusable.
+
+未战胜少主时，在夕阳战场以外使用会显示「请待斜阳水畔见故人。」战胜少主后，只能在湖畔升降梯出口附近入梦。
+Before defeating the Young Master, using the item outside the sunset arena displays a localized story hint. After the fight, enter the dream near the lakeside lift exit.
+
+进入时倒放原版坍塌动画，然后将当前可操控角色送到夕阳湖畔。向升降梯出口走近时，正向播放坍塌动画，再回到本次使用道具的位置。梦境随之结束；再次进入需要重新使用梦中身。
+Entering reverses the original collapse sequence and transfers your current playable character to the sunset lakeside. Approaching the lift exit plays the collapse forward and returns you to the position where you used the item. Use Dreambody again to re-enter.
+
+在夕阳战斗场景中使用，显示「隙中驹，石中火，梦中身。」并留在原处。
+Using the item within the sunset arena displays the localized verse and leaves you in place.
+
+站姿修正 / Idle-pose fix
+过场临时人物复用魂的原版空手站立循环 Hun_Unarmed_Idle_Loop，替代默认骨架姿势。修改仅作用于本次过场人物的骨骼动画绑定，保留镜头、升降梯、特效及往返流程，不替换可操控角色的动画状态。
+The temporary cinematic character uses Soul's original Hun_Unarmed_Idle_Loop animation instead of the reference pose. Only that playback instance's cinematic mesh binding is overridden. Cameras, lift movement, effects and the return flow are retained. The playable character's animation state is not replaced.
+
+存档与语言 / Saves and languages
+道具格在背包界面运行时加入，不向真实背包发放物品，不直接读写存档文件，也不改写剧情标记。离场时恢复使用前的位置、朝向与光照。游戏自身的正常保存机制仍然存在。
+The slot is added at runtime. The mod does not grant a persistent item, directly read or write save files, or rewrite quest flags. Position, orientation and lighting are restored on exit. The game's normal saving system remains active.
+
+名称、说明、诗句和提示跟随界面语言。资源包含简体中文、繁体中文、英语、日语、韩语、法语、德语、意大利语、西班牙西语、拉丁美洲西语、葡萄牙葡语、巴西葡语、俄语、泰语、越南语及希伯来语。可选语言以游戏菜单为准。
+Text follows the game's interface language. Resources cover Simplified and Traditional Chinese, English, Japanese, Korean, French, German, Italian, European and Latin American Spanish, European and Brazilian Portuguese, Russian, Thai, Vietnamese and Hebrew. Available languages depend on the game menu.
+
+验证范围 / Verification status
+4K 纹理、新道具说明与入梦倒放已在独立测试存档中实机检查；往返流程、双向站姿和过场输入修正经使用者测试确认可用。
+The 4K texture, updated description and reverse entry sequence were checked in-game using a separate test save. The tester has confirmed the return flow, both standing poses and cinematic input fixes.
+
+4K 贴图与新版说明 / 4K texture and updated description
+铜镜纹理由原图进行超分辨率放大，游戏内资源为 4096×4096、BC7 格式并保留透明通道，替换旧版 256×256 纹理。道具说明及其 16 种语言版本同步更新。
+The mirror artwork is upscaled from the original. Its in-game texture is 4096×4096 BC7 with alpha, replacing the previous 256×256 texture. The item description is updated in all 16 supported text languages.
+引壶觞心铸梦，执情义梦作身。湖天一镜妆残照，且叫刀兵劝故人。少主一战后，于陆家村湖畔升降梯出口附近使用回到残阳湖畔，靠近升降梯即可离梦。
+
+调试日志 / Debug log
+模组在游戏 Saved/Logs 目录生成 DreamBody-debug.log，并保留上次运行的 DreamBody-debug.previous.log。日志记录使用条件、过场、人物状态和异常，限制文件大小；不读取或改写存档文件。
+The mod writes DreamBody-debug.log under the game's Saved/Logs directory and preserves the previous session as DreamBody-debug.previous.log. Size-limited logs record use conditions, cinematics, character state and errors; they do not read or alter save files.
+
+卸载 / Uninstall
+退出游戏，移除 Paks\~mods 下的 DreamBody_P.pak、DreamBody_P.utoc、DreamBody_P.ucas。道具格随模组消失。
+Close the game and remove DreamBody_P.pak, DreamBody_P.utoc and DreamBody_P.ucas from Paks\~mods. The item slot disappears with the mod.
+
+项目主页 / Project: https://github.com/JoenardoQ/Phantom-Blade-Zero-Revisit-the-sunset

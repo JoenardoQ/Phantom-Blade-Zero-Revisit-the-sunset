@@ -1,0 +1,7 @@
+* text=auto
+*.js text eol=lf
+*.cjs text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.patch text eol=lf
+*.png binary

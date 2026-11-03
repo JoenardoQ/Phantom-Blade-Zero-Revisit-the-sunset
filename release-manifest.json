@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "tested_game_build": "26266538",
+  "package": "Dreambody-v1.0.0-4K.zip",
+  "package_sha256": "a86916b19af6943b4b4f8fdf33df900be88e4352e53e517d249d46b35ca78e4b",
+  "unchanged_runtime_files": {
+    "~mods/DreamBody_P.pak": "a275f25b652444e11dd25942886f32b40527b588157921a371cbf1500973e5ea",
+    "~mods/DreamBody_P.ucas": "1dc51a9c40457c893b3f684038f0e74420f1b7a26a309c178c6fc425c25b0857",
+    "~mods/DreamBody_P.utoc": "2bfa1bf09c2cbc2020f4632f5cc51fac1d444b783a02d60157db935871d36c15"
+  },
+  "source_files": {
+    "DreamBody.js": "f2630294b7472ad30e51b2b1af205ceee1fe7b17851e3d0ee13dc26a1808edde",
+    "DreamBodyDebug.js": "c8e9586a834f31038c0e5ffd3e32295c83abb1c76ca92d4ba9b33a0f9d7cd129",
+    "DreamBodyText.js": "787a6ea5c7703bbde5d24d462f850d78ee13cd8fe02287af46709478d347e926"
+  }
+}

@@ -1,0 +1,75 @@
+--- a/UI/Widget/NewInventory.js
++++ b/UI/Widget/NewInventory.js
+@@ -4,6 +4,7 @@
+ const UILog_1 = require("../Library/UILog");
+ const puerts_1 = require("puerts");
+ const UE = require("ue");
++const DreamBody = require("../../DreamBody");
+ const TsHelper_1 = require("../../Library/TsHelper");
+ const UIHelper_1 = require("../../Library/UIHelper");
+ ;
+@@ -207,7 +208,10 @@
+             this.WidgetSwitcher_64.SetActiveWidgetIndex(0);
+         }
+         let panelInterface = this.W_SystemPanel;
+-        panelInterface.createSlotsByClass(SlotIDs, SlotClass, selectedIndex, selectedFunc, clickFunc);
++        panelInterface.createSlotsByClass(SlotIDs, SlotClass, selectedIndex, selectedFunc, clickFunc, (button, id) => {
++            button["Init Item"](id);
++            if (id === DreamBody.ID) DreamBody.decorateSlot(button);
++        });
+         this.updateRatioBoxBackground(SlotIDs.length);
+     }
+     // 二级菜单翻页音效：OnTabSwitched 委托裸 lambda（Rule #23），成员保留供精确 Remove。
+@@ -258,6 +262,7 @@
+         let initItemDetail;
+         let slotButtonClass;
+         selectedFunc = ((AssociatedButton, ButtonIndex) => {
++            if (slots[ButtonIndex] === DreamBody.ID) { initItemDetail(DreamBody.ID); return; }
+             let slot = AssociatedButton;
+             let itemIDRef = (0, puerts_1.$ref)();
+             slot.GetItemID(itemIDRef);
+@@ -265,6 +270,7 @@
+             initItemDetail(itemID);
+         });
+         clickFunc = ((AssociatedButton, ButtonIndex) => {
++            if (slots[ButtonIndex] === DreamBody.ID) { DreamBody.use(this); return; }
+             let slot = AssociatedButton;
+             let itemIDRef = (0, puerts_1.$ref)();
+             slot.GetItemID(itemIDRef);
+@@ -289,6 +295,10 @@
+         else {
+             slots = this.cachedItemTreasureIDs;
+             //Treasure
++        }
++        // A mod-owned slot exists in the view only. The native inventory is never granted or serialized.
++        if (["all", "narrative"].includes(TabID.toLowerCase())) {
++            slots = [DreamBody.ID, ...(slots || []).filter(id => id !== DreamBody.ID)];
+         }
+         let selectedIndex = preserveSelection ? slots.indexOf(this.currentSelectedItemID) : 0;
+         if (selectedIndex < 0)
+@@ -386,7 +396,9 @@
+         this.SetFocusByButtonGroup();
+     }
+     initItemDetail(ItemID) {
++        DreamBody.restoreDetailLayout(this);
+         this.currentSelectedItemID = ItemID;
++        if (ItemID === DreamBody.ID) { DreamBody.showDetail(this); return; }
+         let propData = UE.PBZBackPackSubsystem.GetPropData(ItemID);
+         if (propData) {
+             // 刷新物品四图层(前图/后图/前特效/后特效):有资源则显示,无则隐藏
+@@ -418,6 +430,7 @@
+     // 与格子 clickFunc 同一动作：对当前选中物品施放 ItemGA。绑定只在选中物品带 ItemGA 时存在，这里再守一次
+     useSelectedItem() {
+         let itemID = this.currentSelectedItemID;
++        if (itemID === DreamBody.ID) { DreamBody.use(this); return; }
+         if (!itemID || itemID == "" || itemID == "None")
+             return;
+         let propData = UE.PBZBackPackSubsystem.GetPropData(itemID);
+@@ -442,6 +455,7 @@
+     }
+     // 无物品数据时:四层全部隐藏/停用
+     clearItemLayers() {
++        DreamBody.restoreDetailLayout(this);
+         this.applyIconLayer(this.ItemIcon, undefined);
+         this.applyIconLayer(this.ItemIcon_Back, undefined);
+         this.applyNiagaraLayer(this.NS_UI_Front, undefined, "front", undefined);

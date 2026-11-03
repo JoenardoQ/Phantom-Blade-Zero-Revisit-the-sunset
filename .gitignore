@@ -1,0 +1,22 @@
+# Local build artifacts and tools
+/build/
+/dist/
+/private/
+__pycache__/
+*.pyc
+*.exe
+*.dll
+*.zip
+!/downloads/*.zip
+*.pak
+*.utoc
+*.ucas
+
+# Never publish save data, diagnostics or credentials
+*.sav
+*.log
+.env*
+asset-crypto.json
+*crypto*.json
+*credentials*
+*token*
